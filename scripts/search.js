@@ -44,6 +44,9 @@ var searchFunc = function(path, search_id, content_id) {
                     if (this.value.trim().length <= 0) {
                         return;
                     }
+                    var res_num_max = 10;
+                    var res_num = 1;
+                    var res_more = "";
                     // perform local searching
                     datas.forEach(function (data) {
                         var isMatch = true;
@@ -80,7 +83,8 @@ var searchFunc = function(path, search_id, content_id) {
                         }
                         // show search results
                         if (isMatch) {
-                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            if(res_num <= res_num_max) {
+                            str += "<li>"+ res_num +" - <a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
                             var content = data.content.trim().replace(/<[^>]+>/g, "");
                             if (first_occur >= 0) {
                                 // cut out 100 characters
@@ -110,6 +114,12 @@ var searchFunc = function(path, search_id, content_id) {
                                 str += "<p class=\"search-result\">" + match_content + "...</p>"
                             }
                             str += "</li>";
+                            } else if(res_num == res_num_max + 1) {
+                                str += res_more;
+                            }
+
+                            res_num++;
+                            res_more = "<li>共" + res_num + "条，请输入更多关键字检索</li>"
                         }
                     });
                     str += "</ul>";
