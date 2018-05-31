@@ -191,6 +191,7 @@
 </head>
 
     
+
     
 <header class="header">
 
@@ -328,6 +329,17 @@
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
             <main class="main index-page">
+	<!-- search  -->
+	
+		<script src="/scripts/search.js"></script>
+		<div id="site_search" style="text-align:center">
+			<div class="form-group">
+				<input type="text" id="local-search-input" name="q" results="0" placeholder="search"  oninput="searchFunc('/search.xml', 'local-search-input', 'local-search-result');" class="st-search-input st-default-search-input form-control"/>
+			</div>  
+			<div id="local-search-result"></div>
+		</div>
+	
+	
     
     
     
@@ -389,6 +401,7 @@
             </div>
         </article>
     
+	
     <!-- paginator  -->
     
 </main>
@@ -460,6 +473,7 @@
     
 </footer>
     </div>
+
     <!-- toc -->
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -568,6 +582,7 @@ jsonContent:
         author: 'my'
     }
 </script>
+	
     <!-- CDN failover -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script type="text/javascript">
@@ -577,6 +592,7 @@ jsonContent:
             document.write('<script src="/lib/jquery.min.js">\x3C/script>')
         }
     </script>
+
     <script src="/scripts/main.js"></script>
     <!-- busuanzi  -->
     
@@ -589,5 +605,3 @@ jsonContent:
     
     </body>
 </html>
-
-

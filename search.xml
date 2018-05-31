@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[https协议原理]]></title>
+    <url>%2F2018-05-29%2Fhttps%E5%8E%9F%E7%90%86%2F</url>
+    <content type="text"><![CDATA[[TOC] #https协议原理 ###关键字理解 123456789101112131415161718192021http： 网络传输协议SSL： 安全的套接字协议（Secure Sockets Layer） TSL： 传输层安全的协议（Transport Layer Security）,可以视为SSL的更高版本 https： 安全的网络传输协议，约等于http+SSL/TSL 公钥/私钥： 公钥私钥只是一段字符串，比如： String pubKey ="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCVRiDkEKXy/KBTe+UmkA+feq1zGWIgBxkgbz7aBJGb5+eMKKoiDRoEHzlGndwFKm4mQWNftuMOfNcogzYpGKSEfC7sqfBPDHsGPZixMWzL3J10zkMTWo6MDIXKKqMG1Pgeq1wENfJjcYSU/enYSZkg3rFTOaBSFId+rrPjPo7Y4wIDAQAB"; 公钥是对外的，而私钥是不对外的 加密/解密: 加密解密相当于数学里的互逆运算（类似于乘法和除法），通过加密将明文转换成非明文，需要用时解密恢复，用以保护信息的安全性。加密方式有许多种，常用的如MD5、RSA、DES等 CA证书： 由权威、可信、公正的第三方机构负责发放和管理的数字证书，内含：&#123;公司域名:xxx,公钥:xxx,加密方式:MD5,,,&#125;的明文 ，CA机构的私钥加密得到的证书编号，CA机构的公钥 ###https时序图 123456789101112131415161718Title:时序图participant CA机构participant Clientparticipant ServerNote left of CA机构: 证书内容：CA机构对&#123;公司域名:xxx,公钥:xxx,加密方式:MD5,,,&#125;进行MD5得到AAA，用CA机构的私钥对AAA进行加密得到证书编码；将&#123;公司域名:xxx,公钥:xxx,加密方式:MD5,,,&#125;、证书编码、CA机构的公钥打包成CA证书Note over CA机构,Server:提供CA证书Client-&gt;&gt;Server: 发送消息，内容：&#123;info:hello,SSL版本:v1.0,支持的加密协议:MD5,,,&#125;Server-&gt;&gt;Client: 返回消息，内容：&#123;info:ok,CA证书:XXXX,,,&#125;Client-&gt;&gt;Client: 对CA证书进行验证Note left of Client: 认证逻辑：client接收到Server发来的CA证书，对其中的&#123;域名:xxx,公钥:xxx,加密方式:xxx,,,&#125;进行MD5得到AAA；用CA机构的公钥对证书编号进行解密，若结果等于AAA，则认证成功Note left of Client: 认证失败，提示证书异常；认证成功，取出Server的公钥，生成随机字符串RSClient-&gt;&gt;Server: 发送消息，内容：用Server公钥加密RS后的非明文Note right of Server:接收消息，用私钥解密取得RNServer-&gt;&gt;Client: 通知客户端可以进行安全通信Client-&gt;&gt;Server: 发送消息（利用RS加密）Server-&gt;&gt;Client: 处理消息（利用RS解密）]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[人生理想]]></title>
+    <url>%2F2018-05-27%2Fjoke%2F</url>
+    <content type="text"><![CDATA[有天晚上和小伙伴们喝多了，不知不觉聊到了人生理想。 到我时我说：“我的理想是和我老爸一样年薪百万！” 当时小伙伴们惊呆了，：“没想到你老子竟然是土豪！真TM荣幸能和你做朋友！！！” 我悠悠端起酒杯道：“不是啊，俺爹的理想，也是年薪百万啊。。。”]]></content>
+      <categories>
+        <category>休闲娱乐</category>
+      </categories>
+      <tags>
+        <tag>笑话</tag>
+      </tags>
+  </entry>
+</search>
