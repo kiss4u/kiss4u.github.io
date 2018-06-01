@@ -45,8 +45,7 @@ var searchFunc = function(path, search_id, content_id) {
                         return;
                     }
                     var res_num_max = 10;
-                    var res_num = 1;
-                    var res_more = "";
+                    var res_num = 0;
                     // perform local searching
                     datas.forEach(function (data) {
                         var isMatch = true;
@@ -83,6 +82,7 @@ var searchFunc = function(path, search_id, content_id) {
                         }
                         // show search results
                         if (isMatch) {
+                            res_num++;
                             if(res_num <= res_num_max) {
                             str += "<li>"+ res_num +" - <a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
                             var content = data.content.trim().replace(/<[^>]+>/g, "");
@@ -91,39 +91,39 @@ var searchFunc = function(path, search_id, content_id) {
                                 var start = first_occur - 20;
                                 var end = first_occur + 80;
 
-                                if (start < 0) {
-                                    start = 0;
-                                }
+									if (start < 0) {
+										start = 0;
+									}
 
-                                if (start == 0) {
-                                    end = 100;
-                                }
+									if (start == 0) {
+										end = 100;
+									}
 
-                                if (end > content.length) {
-                                    end = content.length;
-                                }
+									if (end > content.length) {
+										end = content.length;
+									}
 
-                                var match_content = content.substr(start, end);
+									var match_content = content.substr(start, end);
 
-                                // highlight all keywords
-                                keywords.forEach(function (keyword) {
-                                    var regS = new RegExp(keyword, "gi");
-                                    match_content = match_content.replace(regS, "<em><font size='5' face='arial' color='red'>" + keyword + "</font></em>");
-                                });
+									// highlight all keywords
+									keywords.forEach(function (keyword) {
+										var regS = new RegExp(keyword, "gi");
+										match_content = match_content.replace(regS, "<em><font size='5' face='arial' color='red'>" + keyword + "</font></em>");
+									});
 
-                                str += "<p class=\"search-result\">" + match_content + "...</p>"
-                            }
-                            str += "</li>";
-                            } else if(res_num == res_num_max + 1) {
-                                str += res_more;
-                            }
-
-                            res_num++;
-                            res_more = "<li>共" + res_num + "条，请输入更多关键字检索</li>"
+									str += "<p class=\"search-result\">" + match_content + "...</p>"
+								}
+								str += "</li>";
+                            }  
                         }
                     });
-                    str += "</ul>";
-                    $resultContent.innerHTML = str;
+					if(res_num > 0) {
+						if(res_num > res_num_max) {
+							str += "<li>共" + res_num + "条相关文章</li>"
+						}
+						str += "</ul>";
+						$resultContent.innerHTML = str;
+					}
                 });
             }
         }
